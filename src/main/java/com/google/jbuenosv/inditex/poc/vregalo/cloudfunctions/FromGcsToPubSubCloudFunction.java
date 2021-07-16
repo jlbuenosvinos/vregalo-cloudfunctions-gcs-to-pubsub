@@ -1,4 +1,4 @@
-package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.googlecloudfunctions;
+package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions;
 
 import javax.enterprise.context.ApplicationScoped;
 
