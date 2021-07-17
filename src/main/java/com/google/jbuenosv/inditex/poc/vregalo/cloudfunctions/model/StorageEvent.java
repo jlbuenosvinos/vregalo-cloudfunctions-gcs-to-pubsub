@@ -1,9 +1,11 @@
-package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions;
+package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.model;
+
+import java.io.Serializable;
 
 /**
  * Created by jbuenosv@google.com
  */
-public class StorageEvent {
+public class StorageEvent implements Serializable {
 
     private String bucket;
     private String name;

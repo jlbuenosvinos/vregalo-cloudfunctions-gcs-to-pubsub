@@ -1,34 +1,34 @@
 package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions;
 
-import javax.enterprise.context.ApplicationScoped;
-
 import com.google.cloud.functions.BackgroundFunction;
 import com.google.cloud.functions.Context;
+import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.model.StorageEvent;
+import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.utils.ConfigLoader;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.eclipse.microprofile.metrics.MetricUnits;
-import org.eclipse.microprofile.metrics.annotation.Counted;
-import org.eclipse.microprofile.metrics.annotation.Timed;
+import java.util.logging.Logger;
 
 /**
  * Created by jbuenosv@google.com
  */
-@ApplicationScoped
 public class FromGcsToPubSubCloudFunction implements BackgroundFunction<StorageEvent> {
 
-    public static final Logger logger = LoggerFactory.getLogger(FromGcsToPubSubCloudFunction.class);
+    public static final Logger logger = Logger.getLogger(FromGcsToPubSubCloudFunction.class.getName());
 
-    @Counted(name = "countAccept", description = "Counts how many times the processOrder method has been invoked")
-    @Timed(name = "timeAccept", description = "Times how long it takes to invoke the accept method", unit = MetricUnits.MILLISECONDS)
     @Override
     public void accept(StorageEvent event, Context context) throws Exception {
-        logger.debug("Receive event on ",event.toString());
+        try {
+            logger.info("Receive event on " + event.toString());
+            logger.info("Video storage bucket URL: " + ConfigLoader.getInstance().getEnv(ConfigLoader.getInstance().getProperty("video.input.store.url.env.name")));
 
 
 
-        logger.debug("End receive event on ",event.getName());
+            logger.info("End receive event on " + event.getName());
+        }
+        catch(Exception e) {
+            logger.severe("There is an exception: " + e.getMessage());
+            throw e;
+        }
+
     }
 
 }
