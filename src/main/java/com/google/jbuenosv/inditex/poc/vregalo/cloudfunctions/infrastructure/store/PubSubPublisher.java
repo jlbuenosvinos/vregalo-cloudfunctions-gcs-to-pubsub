@@ -54,7 +54,7 @@ public class PubSubPublisher {
     public String publish(VideoInput video) throws InterruptedException {
         String messageId = "-1";
         Publisher publisher = null;
-        TopicName topicName = TopicName.ofProjectTopicName("inditex-poc-vregalo","video-input-topic");
+        TopicName topicName = TopicName.of("inditex-poc-vregalo","video-input-topic");
 
         try {
             // Create a publisher instance with default settings bound to the topic
