@@ -1,4 +1,4 @@
-package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.model;
+package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.infrastructure;
 
 import java.io.Serializable;
 

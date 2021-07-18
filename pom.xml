@@ -20,8 +20,14 @@
       <groupId>com.google.cloud.functions</groupId>
       <artifactId>functions-framework-api</artifactId>
       <version>1.0.1</version>
-      <type>jar</type>
     </dependency>
+
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-pubsub</artifactId>
+      <version>1.113.5</version>
+    </dependency>
+
   </dependencies>
 
   <!-- Required for Java 11 functions in the inline editor -->

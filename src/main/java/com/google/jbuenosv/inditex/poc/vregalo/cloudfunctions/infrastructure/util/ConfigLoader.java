@@ -1,4 +1,4 @@
-package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.utils;
+package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.infrastructure.util;
 
 import java.io.InputStream;
 import java.util.Properties;
