@@ -21,7 +21,6 @@ public class FromGcsToPubSubCloudFunction implements BackgroundFunction<StorageE
     public void accept(StorageEvent event, Context context) throws Exception {
         try {
             logger.info("Receive event.");
-            logger.info("Video storage bucket URL: " + ConfigLoader.getInstance().getEnv(ConfigLoader.getInstance().getProperty("video.input.store.url.env.name")));
 
             VideoInput newInputVideo = new VideoInput();
             newInputVideo.setBucket(event.getBucket());

@@ -28,7 +28,7 @@
   </dependencyManagement>
 
   <dependencies>
-    <dependency>
+   <dependency>
       <groupId>com.google.cloud.functions</groupId>
       <artifactId>functions-framework-api</artifactId>
       <version>1.0.1</version>
@@ -56,6 +56,10 @@
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client</artifactId>
     </dependency>
   </dependencies>
 
