@@ -1,13 +1,11 @@
 package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.infrastructure.store;
 
-import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.application.exception.FromGcsToPubSubCloudFunctionException;
 import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.domain.VideoInput;
 import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.infrastructure.util.ConfigLoader;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.pubsub.v1.Publisher;
 import com.google.protobuf.ByteString;
-import com.google.pubsub.v1.ProjectTopicName;
 import com.google.pubsub.v1.PubsubMessage;
 import com.google.pubsub.v1.TopicName;
 
@@ -15,7 +13,6 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Logger;
 
