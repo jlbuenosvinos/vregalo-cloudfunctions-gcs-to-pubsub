@@ -7,8 +7,10 @@ import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.infrastructure.uti
 import com.google.api.core.ApiFuture;
 import com.google.cloud.pubsub.v1.Publisher;
 import com.google.protobuf.ByteString;
+import com.google.pubsub.v1.ProjectTopicName;
 import com.google.pubsub.v1.PubsubMessage;
 import com.google.pubsub.v1.TopicName;
+
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -30,20 +32,6 @@ public class PubSubPublisher {
      * Private constructor
      */
     public PubSubPublisher() {
-        try {
-            props = new Properties();
-            InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("application.properties");
-            props.load(inputStream);
-
-            // @todo
-
-
-
-        }
-        catch(Exception e) {
-            logger.severe("Unable to load the configuration file.");
-            throw new FromGcsToPubSubCloudFunctionException(e);
-        }
     }
 
     /**
@@ -51,27 +39,23 @@ public class PubSubPublisher {
      * @param video Input video
      * @return returns a server-assigned message id (unique within the topic)
      */
-    public String publish(VideoInput video) throws InterruptedException {
+    public String publish(VideoInput video) throws InterruptedException, IOException, ExecutionException {
         String messageId = "-1";
         Publisher publisher = null;
-        TopicName topicName = TopicName.of("inditex-poc-vregalo","video-input-topic");
+
+        String projectName = ConfigLoader.getInstance().getEnv(ConfigLoader.getInstance().getProperty("gcp.project.env.name"));
+        String topìcName = ConfigLoader.getInstance().getEnv(ConfigLoader.getInstance().getProperty("video.input.topic.env.name"));
+
+        TopicName topicName = TopicName.of(projectName,topìcName);
 
         try {
-            // Create a publisher instance with default settings bound to the topic
+            logger.info("Ready to build a Topic [" + topicName.toString() + "]");
             publisher = Publisher.newBuilder(topicName).build();
-
             ByteString data = ByteString.copyFromUtf8(video.toJson());
             PubsubMessage pubsubMessage = PubsubMessage.newBuilder().setData(data).build();
-
-            // Once published, returns a server-assigned message id (unique within the topic)
             ApiFuture<String> messageIdFuture = publisher.publish(pubsubMessage);
             messageId = messageIdFuture.get();
-
             logger.info("The message [" + video.getId() + "] has been published having the id [" + messageId + "] :-)");
-
-        }
-        catch (IOException | ExecutionException | InterruptedException e) {
-            logger.severe("Unable tp publish the message.");
         }
         finally {
             if (publisher != null) {

@@ -22,7 +22,6 @@ public final class ConfigLoader {
             props = new Properties();
             InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("application.properties");
             props.load(inputStream);
-
         }
         catch(Exception e) {
             logger.severe("Unable to load the configuration file.");
