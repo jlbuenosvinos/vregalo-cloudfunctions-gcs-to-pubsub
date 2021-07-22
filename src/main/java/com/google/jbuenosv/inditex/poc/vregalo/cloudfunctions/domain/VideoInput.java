@@ -71,11 +71,11 @@ public class VideoInput  implements Serializable {
         StringBuilder result = new StringBuilder();
         String NEW_LINE = System.getProperty("line.separator");
         result.append("{" + NEW_LINE);
-        result.append("    \"id\": " + getId() + "," + NEW_LINE);
-        result.append("    \"name\": " + getName() + "," + NEW_LINE);
+        result.append("    \"id\": \"" + getId() + "\"," + NEW_LINE);
+        result.append("    \"name\": \"" + getName() + "\"," + NEW_LINE);
         result.append("    \"bucket\": \"" + getBucket() + "\","  + NEW_LINE);
         result.append("    \"generation\": \"" + getGeneration() + "\","  + NEW_LINE);
-        result.append("    \"video_url\": \"" + getVideoURL() + "\","  + NEW_LINE);
+        result.append("    \"video_url\": \"" + getVideoURL() + "\""  + NEW_LINE);
         result.append("}");
         return result.toString();
     }

@@ -47,12 +47,13 @@ public class PubSubPublisher {
 
         try {
             logger.info("Ready to build a Topic [" + topicName.toString() + "]");
+            logger.info("Ready to send a JSON payload [" + video.toJson() + "]");
             publisher = Publisher.newBuilder(topicName).build();
             ByteString data = ByteString.copyFromUtf8(video.toJson());
             PubsubMessage pubsubMessage = PubsubMessage.newBuilder().setData(data).build();
             ApiFuture<String> messageIdFuture = publisher.publish(pubsubMessage);
             messageId = messageIdFuture.get();
-            logger.info("The message [" + video.getId() + "] has been published having the id [" + messageId + "] :-)");
+            logger.info("The message [" + video.getId() + "] has been published having [" + messageId + "] id in the topic:-)");
         }
         finally {
             if (publisher != null) {
