@@ -5,7 +5,6 @@ import com.google.cloud.functions.Context;
 import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.application.process.VideoInputProcessManager;
 import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.application.process.VideoInputProcessManagerImpl;
 import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.domain.VideoInput;
-import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.infrastructure.util.ConfigLoader;
 import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.infrastructure.util.UUIDGenerator;
 
 import java.util.logging.Logger;
