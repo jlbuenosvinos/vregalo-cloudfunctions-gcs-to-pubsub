@@ -1,5 +1,7 @@
 package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.infrastructure.util;
 
+import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.application.exception.FromGcsToPubSubCloudFunctionException;
+
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -25,7 +27,7 @@ public final class ConfigLoader {
         }
         catch(Exception e) {
             logger.severe("Unable to load the configuration file.");
-            throw new RuntimeException(e);
+            throw new FromGcsToPubSubCloudFunctionException(e.getCause());
         }
     }
 

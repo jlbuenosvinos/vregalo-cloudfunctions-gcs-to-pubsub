@@ -2,6 +2,7 @@ package com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.infrastructure;
 
 import com.google.cloud.functions.BackgroundFunction;
 import com.google.cloud.functions.Context;
+import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.application.exception.FromGcsToPubSubCloudFunctionException;
 import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.application.process.VideoInputProcessManager;
 import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.application.process.VideoInputProcessManagerImpl;
 import com.google.jbuenosv.inditex.poc.vregalo.cloudfunctions.domain.VideoInput;
@@ -36,7 +37,7 @@ public class FromGcsToPubSubCloudFunction implements BackgroundFunction<StorageE
         }
         catch(Exception e) {
             logger.severe("Unable to process the event [" + event.toString() + "]");
-            throw e;
+            throw new FromGcsToPubSubCloudFunctionException(e.getCause());
         }
 
     }
