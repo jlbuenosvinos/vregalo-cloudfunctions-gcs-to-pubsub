@@ -20,7 +20,7 @@ public class FromGcsToPubSubCloudFunction implements BackgroundFunction<StorageE
     @Override
     public void accept(StorageEvent event, Context context) throws Exception {
         try {
-            logger.info("Receive event.");
+            logger.info("Receive event [" + context.eventId()  + "," + context.timestamp()  + "]");
 
             VideoInput newInputVideo = new VideoInput();
             newInputVideo.setBucket(event.getBucket());
